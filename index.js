@@ -8,7 +8,7 @@ import {
     View,
     StyleSheet,
     TextInput,
-    TouchableHighlight,
+    TouchableOpacity,
     TouchableWithoutFeedback
 } from 'react-native';
 var TimerMixin = require('react-timer-mixin');
@@ -22,7 +22,7 @@ var CountDown = React.createClass({
     };
   },
   componentDidMount(){
-    this._countdown();
+    this.setState({time: this.state.time,disabled:false});
   },
   render(){
     var style = [styles.text];
@@ -36,23 +36,26 @@ var CountDown = React.createClass({
               >
             <TouchableWithoutFeedback
                 >
-              <Text style={[style]}>{this.props.text}({this.state.time})</Text>
+              <Text style={[style]}>重新获取({this.state.time})</Text>
             </TouchableWithoutFeedback>
           </View>
     } else {
       component =
-          <TouchableHighlight
+          <TouchableOpacity
               style={[styles.wrapper,this.props.buttonStyle]}
               onPress={this._onPress.bind(this)}
               >
-            <Text style={[style,this.props.textStyle]}>{this.props.text}({this.state.time})</Text>
-          </TouchableHighlight>
+            <Text style={[this.props.textStyle,{fontSize:14,color:'#D42939'}]}>点击获取验证码</Text>
+          </TouchableOpacity>
     }
     return (
         component
     )
   },
   _onPress(){
+    if (!this.props.isAllowClick()) {
+      return ;
+    }
     if (this.state.disabled) {
       //nothing
     } else {
@@ -81,12 +84,10 @@ var CountDown = React.createClass({
 
 var styles = StyleSheet.create({
   text: {
-    color: 'black'
+    color: '#333333',
+    fontSize:14
   },
   wrapper: {
-    padding: 10,
-    marginRight:10,
-    backgroundColor: '#e5e5e5',
   }
 });
 
