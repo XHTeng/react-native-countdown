@@ -9,7 +9,6 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    TouchableWithoutFeedback
 } from 'react-native';
 var TimerMixin = require('react-timer-mixin');
 
@@ -34,16 +33,16 @@ var CountDown = React.createClass({
           <View
               style={[styles.wrapper,this.props.buttonStyle]}
               >
-            <TouchableWithoutFeedback
+            <TouchableOpacity
                 >
               <Text style={[style]}>重新获取({this.state.time})</Text>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
           </View>
     } else {
       component =
           <TouchableOpacity
               style={[styles.wrapper,this.props.buttonStyle]}
-              onPress={this._onPress.bind(this)}
+              onPress={this._onPress}
               >
             <Text style={[this.props.textStyle,{fontSize:14,color:'#D42939'}]}>点击获取验证码</Text>
           </TouchableOpacity>
