@@ -44,7 +44,7 @@ var CountDown = React.createClass({
               style={[styles.wrapper,this.props.buttonStyle]}
               onPress={this._onPress}
               >
-            <Text style={[this.props.textStyle,{fontSize:14,color:'#D42939'}]}>点击获取验证码</Text>
+            <Text style={[this.props.textStyle,{fontSize:14,color:'#D42939'}]}>获取验证码</Text>
           </TouchableOpacity>
     }
     return (
